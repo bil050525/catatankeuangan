@@ -41,8 +41,19 @@ class ChartScreen extends StatelessWidget {
           incomeSpots.sort((a, b) => a.x.compareTo(b.x));
           expenseSpots.sort((a, b) => a.x.compareTo(b.x));
 
-          if (incomeSpots.isEmpty) incomeSpots.add(const FlSpot(0, 0));
-          if (expenseSpots.isEmpty) expenseSpots.add(const FlSpot(0, 0));
+          int daysInMonth = DateTime(provider.selectedMonth.year, provider.selectedMonth.month + 1, 0).day;
+
+          if (incomeSpots.isEmpty) {
+            incomeSpots = [const FlSpot(1, 0), FlSpot(daysInMonth.toDouble(), 0)];
+          } else if (incomeSpots.length == 1) {
+            incomeSpots.insert(0, const FlSpot(1, 0));
+          }
+
+          if (expenseSpots.isEmpty) {
+            expenseSpots = [const FlSpot(1, 0), FlSpot(daysInMonth.toDouble(), 0)];
+          } else if (expenseSpots.length == 1) {
+            expenseSpots.insert(0, const FlSpot(1, 0));
+          }
           
           double maxY = 0;
           for (var s in incomeSpots) if(s.y > maxY) maxY = s.y;
@@ -75,6 +86,8 @@ class ChartScreen extends StatelessWidget {
                           belowBarData: BarAreaData(show: true, color: Colors.red.withOpacity(0.1)),
                         ),
                       ],
+                      minX: 1,
+                      maxX: daysInMonth.toDouble(),
                       minY: 0,
                       maxY: maxY,
                       titlesData: FlTitlesData(

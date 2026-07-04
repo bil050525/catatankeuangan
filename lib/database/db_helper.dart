@@ -34,19 +34,19 @@ class DatabaseHelper {
 
     await db.execute('''
       CREATE TABLE categories (
-        id \$idType,
-        name \$textType,
-        type \$textType
+        id $idType,
+        name $textType,
+        type $textType
       )
     ''');
 
     await db.execute('''
       CREATE TABLE transactions (
-        id \$idType,
-        title \$textType,
-        amount \$realType,
-        date \$textType,
-        category_id \$integerType,
+        id $idType,
+        title $textType,
+        amount $realType,
+        date $textType,
+        category_id $integerType,
         FOREIGN KEY (category_id) REFERENCES categories (id) ON DELETE CASCADE
       )
     ''');

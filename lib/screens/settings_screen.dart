@@ -16,35 +16,7 @@ class SettingsScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [
-          // Banner Premium
-          Container(
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [Color(0xFF8B5CF6), Color(0xFFC084FC)], // Purple gradients
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Row(
-              children: [
-                const Icon(Icons.star, color: Colors.amber, size: 40),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text('Tingkatkan ke Premium', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
-                      const SizedBox(height: 4),
-                      Text('Buka kunci Backup Google Drive & Bebas Iklan', style: TextStyle(color: Colors.white.withOpacity(0.9))),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 12),
           const Text('Kustomisasi', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
           ListTile(
             leading: const Icon(Icons.category),
@@ -69,17 +41,6 @@ class SettingsScreen extends StatelessWidget {
                 },
               );
             }
-          ),
-          ListTile(
-            leading: const Icon(Icons.cloud_upload),
-            title: const Text('Backup ke Google Drive'),
-            subtitle: const Text('Fitur Premium'),
-            trailing: const Icon(Icons.lock, color: Colors.grey, size: 20),
-            onTap: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Anda perlu berlangganan Premium untuk mencadangkan database.'))
-              );
-            },
           ),
         ],
       ),

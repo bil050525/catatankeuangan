@@ -14,13 +14,16 @@ class TransactionModel {
   });
 
   Map<String, dynamic> toMap() {
-    return {
-      'id': id,
+    var map = <String, dynamic>{
       'title': title,
       'amount': amount,
       'date': date,
       'category_id': categoryId,
     };
+    if (id != null) {
+      map['id'] = id;
+    }
+    return map;
   }
 
   factory TransactionModel.fromMap(Map<String, dynamic> map) {

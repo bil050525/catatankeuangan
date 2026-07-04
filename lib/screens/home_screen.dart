@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter/foundation.dart';
+
 import '../providers/transaction_provider.dart';
 import 'add_transaction_screen.dart';
 import 'chart_screen.dart';
@@ -19,6 +21,16 @@ class _HomeScreenState extends State<HomeScreen> {
     symbol: 'Rp', 
     decimalDigits: 0
   );
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +77,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           InkWell(
             onTap: () async {
-               // Show simple month picker or date picker focused on month
                final DateTime? picked = await showDatePicker(
                  context: context,
                  initialDate: provider.selectedMonth,

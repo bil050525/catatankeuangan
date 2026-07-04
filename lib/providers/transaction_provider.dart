@@ -11,6 +11,7 @@ class TransactionProvider with ChangeNotifier {
   List<Map<String, dynamic>> get transactions => _transactions;
   List<CategoryModel> get categories => _categories;
 
+  bool isCategoriesLoading = true;
   DateTime selectedMonth = DateTime.now();
 
   int _mockTxId = 3;
@@ -44,6 +45,9 @@ class TransactionProvider with ChangeNotifier {
   }
 
   Future<void> fetchCategories() async {
+    isCategoriesLoading = true;
+    notifyListeners();
+
     if (kIsWeb) {
       if (_categories.isEmpty) {
         _categories = [
@@ -54,6 +58,8 @@ class TransactionProvider with ChangeNotifier {
     } else {
       _categories = await DatabaseHelper.instance.getAllCategories();
     }
+    
+    isCategoriesLoading = false;
     notifyListeners();
   }
 

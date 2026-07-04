@@ -43,8 +43,28 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
         builder: (context, provider, child) {
           final categories = provider.categories;
           
+          if (provider.isCategoriesLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
           if (categories.isEmpty) {
-            return const Center(child: Text('Loading categories...'));
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.category, size: 60, color: Colors.grey),
+                  const SizedBox(height: 16),
+                  const Text('Belum ada kategori.', style: TextStyle(fontSize: 16)),
+                  const SizedBox(height: 8),
+                  const Text('Silakan buat kategori pertama Anda di menu Pengaturan.', textAlign: TextAlign.center, style: TextStyle(color: Colors.grey)),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: const Text('Kembali'),
+                  )
+                ],
+              ),
+            );
           }
 
           if (isEdit && _selectedCategory == null) {

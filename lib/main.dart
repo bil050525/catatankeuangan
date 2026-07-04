@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import 'providers/transaction_provider.dart';
 import 'screens/home_screen.dart';
@@ -11,15 +10,6 @@ import 'package:flutter/foundation.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
-  // Initialize AdMob only on mobile native
-  if (!kIsWeb) {
-    try {
-      await MobileAds.instance.initialize();
-    } catch (e) {
-      debugPrint('AdMob Init Error: \$e');
-    }
-  }
   
   // Force portrait mode for a slicker controlled UI
   SystemChrome.setPreferredOrientations([
